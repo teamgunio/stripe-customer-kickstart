@@ -50,7 +50,7 @@ jobs:
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy
             eb init -r us-east-1 stripe-customer-kickstart
-            eb deploy production --verbose -l ${CIRCLE_SHA1}
+            eb deploy sck-production --verbose -l ${CIRCLE_SHA1}
 
 workflows:
   version: 2
