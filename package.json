@@ -15,7 +15,7 @@
     "react-dom": "^16.5.2"
   },
   "scripts": {
-    "test": "http-server -a localhost -p 3000 ./",
+    "test": "echo \"No tests specificed\"",
     "start": "nodemon --exec babel-node ./server",
     "build": "webpack --config ./webpack.deployment.config.js --progress --colors && babel server -d dist",
     "serve": "node dist/index.js"
