@@ -21,12 +21,12 @@ module.exports = {
       {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/
-      }
+      },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'client/index.html'
+      template: 'client/index.html',
     }),
     new LiveReloadPlugin(),
     new Dotenv()

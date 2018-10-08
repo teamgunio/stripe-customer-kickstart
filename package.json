@@ -1,9 +1,9 @@
 {
-  "name": "StripeCustomerKickstart",
+  "name": "stripe-customer-kickstart",
   "version": "1.0.0",
   "description": "A Widget that collects & verifies customer payment info and creates new customers in Stripe",
   "main": "index.js",
-  "repository": "https://github.com/teamgunio/StripeCustomerKickstart",
+  "repository": "https://github.com/teamgunio/stripe-customer-kickstart",
   "author": "Danny Graham <good.midget@gmail.com>",
   "license": "MIT",
   "private": false,
