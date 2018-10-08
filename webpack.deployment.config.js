@@ -1,14 +1,19 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import LiveReloadPlugin from 'webpack-livereload-plugin'
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const Dotenv = require('dotenv-webpack');
 
+const outputDirectory = "dist";
+
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './client/index.js',
   output: {
-    path: '/',
+    path: path.join(__dirname, outputDirectory),
+    publicPath: '/dist/',
     filename: 'bundle.js'
   },
   module: {
@@ -25,10 +30,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       template: 'client/index.html'
     }),
-    new LiveReloadPlugin(),
     new Dotenv()
   ]
 };

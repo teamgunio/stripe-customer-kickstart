@@ -17,7 +17,9 @@
   },
   "scripts": {
     "test": "http-server -a localhost -p 3000 ./",
-    "start": "nodemon --exec babel-node ./server"
+    "start": "nodemon --exec babel-node ./server",
+    "build": "webpack --config ./webpack.deployment.config.js --progress --colors && babel server -d dist",
+    "serve": "node dist/index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -26,11 +28,13 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.18.4",
     "style-loader": "^0.23.0",
     "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
     "webpack-livereload-plugin": "^2.1.1"
   }
 }

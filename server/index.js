@@ -1,15 +1,22 @@
 import {} from 'dotenv/config';
-
-import express from 'express'; 
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackConfig from '../webpack.config.js';
+import path from 'path';
+import express from 'express';
 
 const PORT = process.env.HTTP_PORT || 3000;
-
 const app = express();
 
-app.use(webpackMiddleware(webpack(webpackConfig)));
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack');
+  const webpackMiddleware = require('webpack-dev-middleware');
+  const webpackConfig = require('../webpack.config.js');
+  app.use(webpackMiddleware(webpack(webpackConfig)));
+}
+
+const publicPath = express.static(path.join(__dirname, '../dist'));
+const indexPath = path.join(__dirname, 'index.html');
+
+app.use('/dist', publicPath);
+app.get('/', function (_, res) { res.sendFile(indexPath) });
 
 app.post('/api/token', (req, res) => {
   res.send('Ok');
