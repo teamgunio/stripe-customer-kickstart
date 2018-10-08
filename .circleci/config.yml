@@ -1,0 +1,65 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Test
+          command: |
+            npm install
+            npm test
+      - run:
+          name: Build
+          command: |
+            npm run build
+            docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+            docker build --cache-from=app -t ${DOCKER_USER}/stripe-customer-kickstart:${CIRCLE_SHA1} .
+            docker tag ${DOCKER_USER}/stripe-customer-kickstart:${CIRCLE_SHA1} ${DOCKER_USER}/stripe-customer-kickstart:latest
+            docker push ${DOCKER_USER}/stripe-customer-kickstart
+
+  deploy:
+    docker:
+      - image: circleci/python:2.7
+    steps:
+      - checkout
+      - run:
+          name: Create AWS credentials manually
+          command: |
+            mkdir ~/.aws
+            touch ~/.aws/config
+            chmod 600 ~/.aws/config
+            echo "[profile eb-cli]" > ~/.aws/config
+            echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
+            echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+      - run:
+          name: Install aws cli tools
+          command: |
+            sudo pip install awscli --upgrade
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Deploy
+          command: |
+            sed -i'' -e "s;%BUILD_NUM%;${CIRCLE_SHA1};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CLIENT_ID%;${CLIENT_ID};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CLIENT_TOKEN%;${CLIENT_TOKEN};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CHANNEL%;${CHANNEL};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
+            cd .deploy
+            eb init -r us-east-1 stripe-customer-kickstart
+            eb deploy production --verbose -l ${CIRCLE_SHA1}
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
