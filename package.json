@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"No tests specificed\"",
-    "start": "nodemon --exec babel-node ./server",
+    "start": "nodemon --exec babel-node ./server --watch ./server --ignore dist",
     "build": "webpack --config ./webpack.deployment.config.js --progress --colors && babel server -d dist",
     "serve": "node dist/index.js",
     "release": "standard-version"
@@ -37,6 +37,7 @@
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.3",
     "webpack-livereload-plugin": "^2.1.1"
   }
 }

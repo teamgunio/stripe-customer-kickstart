@@ -8,7 +8,9 @@ const app = express();
 if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
   const webpackMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware')
   const webpackConfig = require('../webpack.config.js');
+  app.use(webpackHotMiddleware(webpack(webpackConfig)))
   app.use(webpackMiddleware(webpack(webpackConfig)));
 }
 

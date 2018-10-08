@@ -22,12 +22,17 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'client/index.html',
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new LiveReloadPlugin(),
     new Dotenv()
   ]
