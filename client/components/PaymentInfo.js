@@ -1,6 +1,11 @@
 import React from 'react';
 import { injectStripe, CardElement } from 'react-stripe-elements';
 
+const { HOST } = process.env;
+const { HOST_PORT } = process.env;
+const { NODE_ENV } = process.env;
+const BASE_URL = `//${HOST}${(NODE_ENV === 'development') ? `:${HOST_PORT}` : ''}`;
+
 class PaymentInfo extends React.Component {
   constructor() {
     super();
@@ -31,7 +36,7 @@ class PaymentInfo extends React.Component {
       body: JSON.stringify({ name, company, email, phone, address, city, state, zip, token }),
     };
 
-    return fetch('/api/token', config);
+    return fetch(`${BASE_URL}/api/token`, config);
   }
 
   handleSubmit(e) {
