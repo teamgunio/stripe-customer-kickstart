@@ -10,8 +10,20 @@
           "value": "production"
         },
         {
+          "name": "BRAND",
+          "value": "%BRAND%"
+        },
+        {
           "name": "HOST_PORT",
           "value": "3000"
+        },
+        {
+          "name": "STRIPE_PKEY",
+          "value": "%STRIPE_PKEY%"
+        },
+        {
+          "name": "STRIPE_SKEY",
+          "value": "%STRIPE_SKEY%"
         }
       ],
       "essential": true,

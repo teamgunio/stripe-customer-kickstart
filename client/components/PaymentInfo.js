@@ -36,13 +36,15 @@ class PaymentInfo extends React.Component {
 
   handleSubmit(e) {
     const { stripe } = this.props;
+    const { name, email } = this.state;
+
     e.preventDefault();
 
     this.setState({
       submitted: true,
     });
 
-    stripe.createToken({ name: 'Danny Graham' })
+    stripe.createToken({ name, email })
     .then(({token}) => {
       this.setState({
         token

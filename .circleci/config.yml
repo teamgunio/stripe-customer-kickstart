@@ -43,10 +43,9 @@ jobs:
           name: Deploy
           command: |
             sed -i'' -e "s;%BUILD_NUM%;${CIRCLE_SHA1};g" ./.deploy/Dockerrun.aws.json
-            sed -i'' -e "s;%CLIENT_ID%;${CLIENT_ID};g" ./.deploy/Dockerrun.aws.json
-            sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
-            sed -i'' -e "s;%CLIENT_TOKEN%;${CLIENT_TOKEN};g" ./.deploy/Dockerrun.aws.json
-            sed -i'' -e "s;%CHANNEL%;${CHANNEL};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%STRIPE_PKEY%;${STRIPE_PKEY};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%STRIPE_SKEY%;${STRIPE_SKEY};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%BRAND%;${BRAND};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy
             eb init -r us-east-1 stripe-customer-kickstart
