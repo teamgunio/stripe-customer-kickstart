@@ -90,36 +90,36 @@ class PaymentInfo extends React.Component {
           <div className="row">
             <div className="field">
               <label htmlFor="name">Name</label>
-              <input id="name" className="input" type="text" placeholder="Jane Doe" required autoComplete="name" value={name} onChange={this.handleChange.bind(this)} />
+              <input id="name" className="input" type="text" placeholder="Elon Musk" required autoComplete="name" value={name} onChange={this.handleChange.bind(this)} />
             </div>
           </div>
           <div className="row">
             <div className="field">
               <label htmlFor="company">Company</label>
-              <input id="company" className="input" type="text" placeholder="ACME" required autoComplete="company" value={company} onChange={this.handleChange.bind(this)} />
+              <input id="company" className="input" type="text" placeholder="SpaceX" required autoComplete="company" value={company} onChange={this.handleChange.bind(this)} />
             </div>
           </div>
           <div className="row">
             <div className="field">
               <label htmlFor="email">Email</label>
-              <input id="email" className="input" type="email" placeholder="janedoe@acme.com" required autoComplete="email" onChange={this.handleChange.bind(this)} />
+              <input id="email" className="input" type="email" placeholder="elon@spacex.com" required autoComplete="email" onChange={this.handleChange.bind(this)} />
             </div>
             <div className="field">
               <label htmlFor="phone">Phone</label>
-              <input id="phone" className="input" type="tel" placeholder="(941) 555-0123" required autoComplete="tel" onChange={this.handleChange.bind(this)} />
+              <input id="phone" className="input" type="tel" placeholder="(310) 363-6000" required autoComplete="tel" onChange={this.handleChange.bind(this)} />
             </div>
           </div>
           <div data-locale-reversible>
             <div className="row">
               <div className="field">
                 <label htmlFor="address">Address</label>
-                <input id="address" className="input" type="text" placeholder="185 Berry St" required autoComplete="address-line1" onChange={this.handleChange.bind(this)} />
+                <input id="address" className="input" type="text" placeholder="Rocket Road" required autoComplete="address-line1" onChange={this.handleChange.bind(this)} />
               </div>
             </div>
             <div className="row" data-locale-reversible>
               <div className="field">
                 <label htmlFor="city">City</label>
-                <input id="city" className="input" type="text" placeholder="San Francisco" required autoComplete="address-level2" onChange={this.handleChange.bind(this)} />
+                <input id="city" className="input" type="text" placeholder="Hawthorne, California" required autoComplete="address-level2" onChange={this.handleChange.bind(this)} />
               </div>
               <div className="field">
                 <label htmlFor="state">State</label>
@@ -127,7 +127,7 @@ class PaymentInfo extends React.Component {
               </div>
               <div className="field">
                 <label htmlFor="zip">ZIP</label>
-                <input id="zip" className="input empty" type="text" placeholder="94107" required autoComplete="postal-code" onChange={this.handleChange.bind(this)} />
+                <input id="zip" className="input empty" type="text" placeholder="90250" required autoComplete="postal-code" onChange={this.handleChange.bind(this)} />
               </div>
             </div>
           </div>

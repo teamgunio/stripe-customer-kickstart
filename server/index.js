@@ -2,6 +2,7 @@ import {} from 'dotenv/config';
 import path from 'path';
 import express from 'express';
 import bodyparser from 'body-parser';
+import cors from 'cors';
 import Stripe from 'stripe'
 
 const { STRIPE_SKEY } = process.env;
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 const publicPath = express.static(path.join(__dirname, '../dist'));
 const indexPath = path.join(__dirname, 'index.html');
 
+app.use(cors());
 app.use( bodyparser.json() );
 app.use( bodyparser.urlencoded( {
   extended: true
