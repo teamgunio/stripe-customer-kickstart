@@ -38,6 +38,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'client/index.html'
     }),
-    new Dotenv()
+    new Dotenv({
+      systemvars: true,
+    }),
   ]
 };
