@@ -1,8 +1,13 @@
 import {} from 'dotenv/config';
 import path from 'path';
 import express from 'express';
+import bodyparser from 'body-parser';
+import Stripe from 'stripe'
 
+const { STRIPE_SKEY } = process.env;
 const PORT = process.env.HTTP_PORT || 3000;
+
+const stripe = Stripe(STRIPE_SKEY);
 const app = express();
 
 if (process.env.NODE_ENV !== 'production') {
@@ -17,11 +22,48 @@ if (process.env.NODE_ENV !== 'production') {
 const publicPath = express.static(path.join(__dirname, '../dist'));
 const indexPath = path.join(__dirname, 'index.html');
 
+app.use( bodyparser.json() );
+app.use( bodyparser.urlencoded( {
+  extended: true
+}));
+
 app.use('/dist', publicPath);
 app.get('/', function (_, res) { res.sendFile(indexPath) });
 
-app.post('/api/token', (req, res) => {
-  res.send('Ok');
+app.post('/api/token', (req, res, next) => {
+  const { name, company, email, phone, address, city, state, zip, token } = req.body;
+
+  if ( !token || !token.id) {
+    res.status(500);
+    res.send('Missing token');
+    return next();
+  }
+
+  stripe.customers.create({
+    email,
+    shipping: {
+      name,
+      phone,
+      address: {
+        line1: address,
+        city,
+        country: 'US',
+        state,
+        postal_code: zip,
+      },
+    },
+    source: token.id,
+  }, (err, customer) => {
+    if (err) {
+      console.error(err);
+      res.status(500);
+      res.send(err);
+      return next();
+    }
+
+    res.send('Ok');
+  })
+
 });
 
 if (!module.parent) {

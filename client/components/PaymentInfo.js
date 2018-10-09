@@ -21,14 +21,14 @@ class PaymentInfo extends React.Component {
 
   createCustomer () {
     const post = new FormData()
-
-    for(let i in this.state) {
-      post.append(i, this.state[i]);
-    };
+    const { name, company, email, phone, address, city, state, zip, token } = this.state;
 
     let config = {
       method: 'POST',
-      body: post
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, company, email, phone, address, city, state, zip, token }),
     };
 
     return fetch('/api/token', config);
