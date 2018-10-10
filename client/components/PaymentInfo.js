@@ -19,6 +19,7 @@ class PaymentInfo extends React.Component {
       state: '',
       zip: '',
       token: '',
+      errors: [],
       created: false,
       submitted: false,
     };
@@ -47,6 +48,8 @@ class PaymentInfo extends React.Component {
 
     this.setState({
       submitted: true,
+      created: false,
+      errors: [],
     });
 
     stripe.createToken({ name, email })
@@ -64,12 +67,19 @@ class PaymentInfo extends React.Component {
       } else {
         this.setState({
           submitted: false,
+          errors: ['Unable to create customer'],
         });
+        setTimeout(() => {
+          this.setState({
+            errors: [],
+          });
+        }, 3500);
       }
     })
     .catch((err) => {
       this.setState({
         submitted: false,
+        errors: [err],
       })
     });
   }
@@ -82,7 +92,7 @@ class PaymentInfo extends React.Component {
   }
 
   render() {
-    const { name, company, email, phone, address, city, state, zip, token, created, submitted } = this.state;
+    const { name, company, email, phone, address, city, state, zip, token, created, submitted, errors } = this.state;
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
@@ -141,10 +151,21 @@ class PaymentInfo extends React.Component {
             </div>
           </div>
         </fieldset>
-        <button type="submit" className={created ? 'success' : ''} disabled={submitted ? true : false}>
-          { token ? 
-            `Thank You, Setup Complete!`
-            : `Setup Billing Profile`
+        <button type="submit" className={(created ? 'success' : (errors.length) ? 'error' : '')} disabled={(submitted ? true : (errors.length ? true : false))}>
+          { (!created && !submitted && !errors.length) ?
+            `Setup Billing Profile` : null
+          }
+          { (created && !errors.length) ? 
+            `Thank You, Setup Complete!` : null
+          }
+          {
+            (!created && submitted && !errors.length) ?
+            `Setting Up Your Profile...`
+            : null
+          }
+          { (!created && !submitted && errors.length) ?
+            `Error Setting Up Your Profile`
+            : null
           }
         </button>
       </form>

@@ -59,7 +59,7 @@ app.post('/api/token', (req, res, next) => {
     if (err) {
       console.error(err);
       res.status(500);
-      res.send(err);
+      res.send('Unable to create customer.');
       return next();
     }
 

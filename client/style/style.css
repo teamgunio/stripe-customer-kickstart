@@ -155,3 +155,8 @@
 .StripeCustomerKickstart button.success {
   background-color: #00B016;
 }
+
+.StripeCustomerKickstart button.error {
+  background-color: #CD0009;
+  cursor: default;
+}
