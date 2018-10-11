@@ -8,6 +8,20 @@
 }
 
 .StripeCustomerKickstart form {
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  -o-transition: .2s ease-out;
+  transition: .2s ease-out;
+  /*transition: opacity .2s ease-in-out .3s;*/
+  overflow: hidden;
+}
+
+.StripeCustomerKickstart form.active {
+  /*opacity: 1;*/
+}
+
+.StripeCustomerKickstart form.closed {
+  /*opacity: 0;*/
 }
 
 .StripeCustomerKickstart form * {
@@ -208,4 +222,42 @@
 .StripeCustomerKickstart button.error {
   background-color: #CD0009;
   cursor: default;
+}
+
+.StripeCustomerKickstart div.success {
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+  text-align: center;
+  overflow: hidden;
+  height: 0px;
+  /*opacity: 0;*/
+}
+
+.StripeCustomerKickstart .message {
+  margin: 3em 0;
+}
+
+.StripeCustomerKickstart .icon {
+  width: 35px;
+  height: 35px;
+  background-color: #00B016;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  float: left;
+  margin-left: 1em;
+  margin-right: 0;
+}
+
+.StripeCustomerKickstart .icon::before
+{
+  position: absolute;
+  font: 18px/1 'Open Sans', sans-serif;
+  left: 13px;
+  top: 8px;
+  content: '\02143';
+  transform: rotate(40deg);
+  color: white;
 }

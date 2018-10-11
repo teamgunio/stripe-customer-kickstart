@@ -104,6 +104,17 @@ class PaymentInfo extends React.Component {
 
     e.preventDefault();
 
+    let form = document.getElementById('sck-form');
+    let success = document.getElementById('sck-success');
+    form.style.height = `${form.clientHeight}px`;
+
+    let closeForm = () => {
+      setTimeout(() => {
+        form.style.height = '0px';
+        success.style.height = '132px';
+      }, 1000);
+    };
+
     this.setState({
       submitted: true,
       created: false,
@@ -123,6 +134,7 @@ class PaymentInfo extends React.Component {
           this.setState({
             created: true,
           });
+          closeForm();
         } else {
           this.setState({
             submitted: false,
@@ -148,6 +160,7 @@ class PaymentInfo extends React.Component {
           this.setState({
             created: true,
           });
+          closeForm();
         } else {
           this.setState({
             submitted: false,
@@ -184,106 +197,113 @@ class PaymentInfo extends React.Component {
     const { name, company, email, phone, address, city, state, zip, token, method, created, submitted, errors, plaid_metadata } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <fieldset>
-          <legend className="card-only">Customer Info</legend>
-          <div className="row">
-            <div className="field">
-              <label htmlFor="name">Name</label>
-              <input id="name" className="input" type="text" placeholder="Elon Musk" required autoComplete="name" value={name} onChange={this.handleChange.bind(this)} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="field">
-              <label htmlFor="company">Company</label>
-              <input id="company" className="input" type="text" placeholder="SpaceX" required autoComplete="company" value={company} onChange={this.handleChange.bind(this)} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input id="email" className="input" type="email" placeholder="elon@spacex.com" required autoComplete="email" onChange={this.handleChange.bind(this)} />
-            </div>
-            <div className="field">
-              <label htmlFor="phone">Phone</label>
-              <input id="phone" className="input" type="tel" placeholder="(310) 363-6000" required autoComplete="tel" onChange={this.handleChange.bind(this)} />
-            </div>
-          </div>
-          <div data-locale-reversible>
+      <div>
+        <form id="sck-form" onSubmit={this.handleSubmit.bind(this)} className={ !created ? 'active' : 'closed' }>
+          <fieldset>
+            <legend className="card-only">Customer Info</legend>
             <div className="row">
               <div className="field">
-                <label htmlFor="address">Address</label>
-                <input id="address" className="input" type="text" placeholder="Rocket Road" required autoComplete="address-line1" onChange={this.handleChange.bind(this)} />
+                <label htmlFor="name">Name</label>
+                <input id="name" className="input" type="text" placeholder="Elon Musk" required autoComplete="name" value={name} onChange={this.handleChange.bind(this)} />
               </div>
             </div>
-            <div className="row" data-locale-reversible>
-              <div className="field">
-                <label htmlFor="city">City</label>
-                <input id="city" className="input" type="text" placeholder="Hawthorne, California" required autoComplete="address-level2" onChange={this.handleChange.bind(this)} />
-              </div>
-              <div className="field">
-                <label htmlFor="state">State</label>
-                <input id="state" className="input empty" type="text" placeholder="CA" required autoComplete="address-level1" onChange={this.handleChange.bind(this)} />
-              </div>
-              <div className="field">
-                <label htmlFor="zip">ZIP</label>
-                <input id="zip" className="input empty" type="text" placeholder="90250" required autoComplete="postal-code" onChange={this.handleChange.bind(this)} />
-              </div>
-            </div>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Payment Info</legend>
-          <div className="row">
-            <div className="field">
-              <label htmlFor="method">Payment Method</label>
-              <RadioGroup id="method" name="method" selectedValue={method} onChange={(value) => {
-                this.handleChange({
-                  target: {
-                    id: 'method',
-                    value
-                  }
-                })
-              }}>
-                <Radio value="cc"/> Credit Card
-                <Radio value="ach"/> ACH
-              </RadioGroup>
-            </div>
-          </div>
-          { method === 'cc' ?
-            <div className="row payment-info">
-              <div className="field">
-                <label htmlFor="card">Card</label>
-                <CardElement />
-              </div>
-            </div> : null
-          }
-          { (method === 'ach' && plaid_metadata) ?
             <div className="row">
-              <div className="field"><label>Institution:</label> { plaid_metadata.institution.name }</div>
-              <div className="field"><label>Account:</label> { `XXXX-XXXX-${plaid_metadata.account.mask}` }</div>
+              <div className="field">
+                <label htmlFor="company">Company</label>
+                <input id="company" className="input" type="text" placeholder="SpaceX" required autoComplete="company" value={company} onChange={this.handleChange.bind(this)} />
+              </div>
             </div>
-            : null
-          }
-        </fieldset>
-        <button type="submit" className={(created ? 'success' : (errors.length) ? 'error' : '')} disabled={(submitted ? true : (errors.length ? true : false))}>
-          { (!created && !submitted && !errors.length) ?
-            `Setup Billing Profile` : null
-          }
-          { (created && !errors.length) ? 
-            `Thank You, Setup Complete!` : null
-          }
-          {
-            (!created && submitted && !errors.length) ?
-            `Setting Up Your Profile...`
-            : null
-          }
-          { (!created && !submitted && errors.length) ?
-            `Error Setting Up Your Profile`
-            : null
-          }
-        </button>
-      </form>
+            <div className="row">
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input id="email" className="input" type="email" placeholder="elon@spacex.com" required autoComplete="email" onChange={this.handleChange.bind(this)} />
+              </div>
+              <div className="field">
+                <label htmlFor="phone">Phone</label>
+                <input id="phone" className="input" type="tel" placeholder="(310) 363-6000" required autoComplete="tel" onChange={this.handleChange.bind(this)} />
+              </div>
+            </div>
+            <div data-locale-reversible>
+              <div className="row">
+                <div className="field">
+                  <label htmlFor="address">Address</label>
+                  <input id="address" className="input" type="text" placeholder="Rocket Road" required autoComplete="address-line1" onChange={this.handleChange.bind(this)} />
+                </div>
+              </div>
+              <div className="row" data-locale-reversible>
+                <div className="field">
+                  <label htmlFor="city">City</label>
+                  <input id="city" className="input" type="text" placeholder="Hawthorne, California" required autoComplete="address-level2" onChange={this.handleChange.bind(this)} />
+                </div>
+                <div className="field">
+                  <label htmlFor="state">State</label>
+                  <input id="state" className="input empty" type="text" placeholder="CA" required autoComplete="address-level1" onChange={this.handleChange.bind(this)} />
+                </div>
+                <div className="field">
+                  <label htmlFor="zip">ZIP</label>
+                  <input id="zip" className="input empty" type="text" placeholder="90250" required autoComplete="postal-code" onChange={this.handleChange.bind(this)} />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Payment Info</legend>
+            <div className="row">
+              <div className="field">
+                <label htmlFor="method">Payment Method</label>
+                <RadioGroup id="method" name="method" selectedValue={method} onChange={(value) => {
+                  this.handleChange({
+                    target: {
+                      id: 'method',
+                      value
+                    }
+                  })
+                }}>
+                  <Radio value="cc"/> Credit Card
+                  <Radio value="ach"/> ACH
+                </RadioGroup>
+              </div>
+            </div>
+            { method === 'cc' ?
+              <div className="row payment-info">
+                <div className="field">
+                  <label htmlFor="card">Card</label>
+                  <CardElement />
+                </div>
+              </div> : null
+            }
+            { (method === 'ach' && plaid_metadata) ?
+              <div className="row">
+                <div className="field"><label>Institution:</label> { plaid_metadata.institution.name }</div>
+                <div className="field"><label>Account:</label> { `XXXX-XXXX-${plaid_metadata.account.mask}` }</div>
+              </div>
+              : null
+            }
+          </fieldset>
+          <button type="submit" className={(created ? 'success' : (errors.length) ? 'error' : '')} disabled={(submitted ? true : (errors.length ? true : false))}>
+            { (!created && !submitted && !errors.length) ?
+              `Setup Billing Profile` : null
+            }
+            { (created && !errors.length) ? 
+              `Thank You, Setup Complete!` : null
+            }
+            {
+              (!created && submitted && !errors.length) ?
+              `Setting Up Your Profile...`
+              : null
+            }
+            { (!created && !submitted && errors.length) ?
+              `Error Setting Up Your Profile`
+              : null
+            }
+          </button>
+        </form>
+        <div id="sck-success" className="success">
+          <div className="message">
+            <div className="icon" />Thank you. We've successfully received your payment information and we've created your customer account.
+          </div>
+        </div>
+      </div>
     )
   }
 }
