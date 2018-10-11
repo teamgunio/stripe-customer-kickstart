@@ -1,5 +1,5 @@
 # Stripe Customer Kickstart
-A Widget that collects &amp; verifies customer payment info and creates new customers in Stripe. Example: [https://www.gun.io/payment]
+A Widget that collects &amp; verifies customer payment info and creates new customers in Stripe. Example: [https://www.gun.io/payment]()
 
 ## Features
 
@@ -68,7 +68,7 @@ yarn install
 npm run start
 ```
 
-The `express` server will fire up and compile the static front end assets with `webpack`, automatically watching for changes. Browse to [`http://localhost:3000`].
+The `express` server will fire up and compile the static front end assets with `webpack`, automatically watching for changes. Browse to [`http://localhost:3000`]().
 
 ## Testing
 No tests have been created yet. Tsk-tsk. Use manual UAT for now.
