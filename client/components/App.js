@@ -11,14 +11,21 @@ const { STRIPE_PKEY } = process.env;
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {stripe: null};
+    this.state = {
+      stripe: null,
+    };
   }
+
+  initStripe() {
+    return window.Stripe(STRIPE_PKEY);
+  }
+
   componentDidMount() {
     if (window.Stripe) {
-      this.setState({stripe: window.Stripe(STRIPE_PKEY)});
+      this.setState({stripe: this.initStripe()});
     } else {
       document.querySelector('#stripe-js').addEventListener('load', () => {
-        this.setState({stripe: window.Stripe(STRIPE_PKEY)});
+        this.setState({stripe: this.initStripe()});
       });
     }
   }
