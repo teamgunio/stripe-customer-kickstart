@@ -7,12 +7,14 @@ import Stripe from 'stripe';
 import Plaid from 'plaid';
 
 const {
+  NODE_ENV,
   HTTP_PORT,
-  STRIPE_SKEY,
   PLAID_ENV,
   PLAID_CLIENT,
   PLAID_PKEY,
-  PLAID_SKEY
+  PLAID_SKEY,
+  STRIPE_SKEY,
+  ROOT_REDIRECT,
 } = process.env;
 
 const PORT = HTTP_PORT || 3000;
@@ -27,7 +29,7 @@ const plaid = new Plaid.Client(
 
 const app = express();
 
-if (process.env.NODE_ENV !== 'production') {
+if (NODE_ENV !== 'production') {
   const webpack = require('webpack');
   const webpackMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware')
@@ -46,7 +48,15 @@ app.use( bodyparser.urlencoded( {
 }));
 
 app.use('/dist', publicPath);
-app.get('/', function (_, res) { res.sendFile(indexPath) });
+
+app.get('/', function (_, res) {
+  if (ROOT_REDIRECT) {
+    res.location(ROOT_REDIRECT);
+    res.sendStatus(301);
+  } else {
+    res.sendFile(indexPath)
+  }
+});
 
 app.post('/api/cc', (req, res, next) => {
   const { name, company, email, phone, address, city, state, zip, token } = req.body;
