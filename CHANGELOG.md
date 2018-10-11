@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.3.0...v1.3.1) (2018-10-11)
+
+
+### Bug Fixes
+
+* resolves a UX issue where payment method selection was not intuitive ([98bc6d6](https://github.com/teamgunio/stripe-customer-kickstart/commit/98bc6d6))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.2.4...v1.3.0) (2018-10-11)
 
