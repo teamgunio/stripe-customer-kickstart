@@ -44,6 +44,10 @@
         {
           "name": "PLAID_SKEY",
           "value": "%PLAID_SKEY%"
+        },
+        {
+          "name": "ROOT_REDIRECT",
+          "value": "%ROOT_REDIRECT%"
         }
       ],
       "essential": true,

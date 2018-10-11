@@ -52,6 +52,7 @@ jobs:
             sed -i'' -e "s;%PLAID_CLIENT%;${PLAID_CLIENT};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%PLAID_PKEY%;${PLAID_PKEY};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%PLAID_SKEY%;${PLAID_SKEY};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%ROOT_REDIRECT%;${ROOT_REDIRECT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy
             eb init -r us-east-1 stripe-customer-kickstart
             eb deploy sck-production --verbose -l ${CIRCLE_SHA1}
