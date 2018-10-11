@@ -1,5 +1,6 @@
 import React from 'react';
 import { injectStripe, CardElement } from 'react-stripe-elements';
+import { RadioGroup, Radio } from 'react-radio-group';
 
 const { HOST } = process.env;
 const { HOST_PORT } = process.env;
@@ -232,25 +233,32 @@ class PaymentInfo extends React.Component {
           </div>
         </fieldset>
         <fieldset>
-          <legend className="card-only">Payment Info</legend>
+          <legend>Payment Info</legend>
           <div className="row">
             <div className="field">
               <label htmlFor="method">Payment Method</label>
-              <select id="method" className="input empty" defaultValue={method} onChange={this.handleChange.bind(this)}>
-                <option value="cc">Credit Card</option>
-                <option value="ach">ACH</option>
-              </select>
+              <RadioGroup id="method" name="method" selectedValue={method} onChange={(value) => {
+                this.handleChange({
+                  target: {
+                    id: 'method',
+                    value
+                  }
+                })
+              }}>
+                <Radio value="cc"/> Credit Card
+                <Radio value="ach"/> ACH
+              </RadioGroup>
             </div>
           </div>
           { method === 'cc' ?
-            <div className="row">
+            <div className="row payment-info">
               <div className="field">
                 <label htmlFor="card">Card</label>
                 <CardElement />
               </div>
             </div> : null
           }
-          { plaid_metadata ?
+          { (method === 'ach' && plaid_metadata) ?
             <div className="row">
               <div className="field"><label>Institution:</label> { plaid_metadata.institution.name }</div>
               <div className="field"><label>Account:</label> { `XXXX-XXXX-${plaid_metadata.account.mask}` }</div>

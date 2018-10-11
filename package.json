@@ -16,6 +16,7 @@
     "plaid": "^2.8.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-radio-group": "^3.0.3",
     "react-stripe-elements": "^2.0.1",
     "stripe": "^6.12.1"
   },

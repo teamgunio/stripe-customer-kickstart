@@ -36,9 +36,15 @@
   clear: both;
 }
 
-.StripeCustomerKickstart .card-only {
-  display: block;
+.StripeCustomerKickstart .row.payment-info {
+  /*margin-top: 1.5em;*/
 }
+
+.StripeCustomerKickstart #method {
+  height: 48px;
+  margin-top: -.5em;
+}
+
 .StripeCustomerKickstart .payment-request-available {
   display: none;
 }
@@ -129,6 +135,49 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 20px;
+}
+
+.StripeCustomerKickstart input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  position: relative;
+  background-color: #f1f1f1;
+  color: #666;
+  top: 10px;
+  height: 30px;
+  width: 30px;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;     
+  margin-right: 4px;
+  outline: none;
+  margin-left: 2em;
+}
+
+.StripeCustomerKickstart input[type=radio]:first-child {
+  margin-left: 0;
+}
+
+.StripeCustomerKickstart input[type=radio]:checked::before
+{
+  position: absolute;
+  font: 13px/1 'Open Sans', sans-serif;
+  left: 12px;
+  top: 8px;
+  content: '\02143';
+  transform: rotate(40deg);
+  color: white;
+}
+.StripeCustomerKickstart input[type=radio]:hover
+{
+  background-color: #f7f7f7;
+}
+.StripeCustomerKickstart input[type=radio]:checked
+{
+  background-color: #00B016;
+  /*background-color: #f1f1f1;*/
 }
 
 .StripeCustomerKickstart button {
