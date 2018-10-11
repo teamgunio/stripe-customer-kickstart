@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.2.4...v1.3.0) (2018-10-11)
+
+
+### Features
+
+* introduces ACH support with Plaid ([1b60c5e](https://github.com/teamgunio/stripe-customer-kickstart/commit/1b60c5e))
+
+
+
 <a name="1.2.4"></a>
 ## [1.2.4](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.2.3...v1.2.4) (2018-10-10)
 
