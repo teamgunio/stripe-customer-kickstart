@@ -3,25 +3,18 @@
   margin: 0 auto 0 auto;
 }
 
-.StripeCustomerKickstart * {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-}
-
 .StripeCustomerKickstart form {
   -webkit-transition: .2s ease-out;
   -moz-transition: .2s ease-out;
   -o-transition: .2s ease-out;
   transition: .2s ease-out;
-  /*transition: opacity .2s ease-in-out .3s;*/
   overflow: hidden;
 }
 
 .StripeCustomerKickstart form.active {
-  /*opacity: 1;*/
 }
 
 .StripeCustomerKickstart form.closed {
-  /*opacity: 0;*/
 }
 
 .StripeCustomerKickstart form * {
@@ -51,7 +44,6 @@
 }
 
 .StripeCustomerKickstart .row.payment-info {
-  /*margin-top: 1.5em;*/
 }
 
 .StripeCustomerKickstart #method {
@@ -191,7 +183,6 @@
 .StripeCustomerKickstart input[type=radio]:checked
 {
   background-color: #00B016;
-  /*background-color: #f1f1f1;*/
 }
 
 .StripeCustomerKickstart button {
@@ -232,7 +223,6 @@
   text-align: center;
   overflow: hidden;
   height: 0px;
-  /*opacity: 0;*/
 }
 
 .StripeCustomerKickstart .message {
