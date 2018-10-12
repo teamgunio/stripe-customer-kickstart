@@ -5,6 +5,7 @@ import { RadioGroup, Radio } from 'react-radio-group';
 const { HOST } = process.env;
 const { HOST_PORT } = process.env;
 const { NODE_ENV } = process.env;
+const { PLAID_ENV } = process.env;
 const { PLAID_PKEY } = process.env;
 
 const BASE_URL = `//${HOST}${(NODE_ENV === 'development') ? `:${HOST_PORT}` : ''}`;
@@ -44,7 +45,7 @@ class PaymentInfo extends React.Component {
 
   initPlaid() {
     return window.Plaid.create({
-      env: 'sandbox',
+      env: PLAID_ENV,
       clientName: 'Gun.io',
       key: PLAID_PKEY,
       product: ['auth'],
