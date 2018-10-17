@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.8"></a>
+## [1.4.8](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.4.7...v1.4.8) (2018-10-17)
+
+
+### Bug Fixes
+
+* better startup log ([56f2d44](https://github.com/teamgunio/stripe-customer-kickstart/commit/56f2d44))
+
+
+
 <a name="1.4.7"></a>
 ## [1.4.7](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.4.6...v1.4.7) (2018-10-17)
 
