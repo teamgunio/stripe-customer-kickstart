@@ -159,7 +159,13 @@ if (!module.parent) {
   const { npm_package_name, npm_package_version } = process.env;
   log.info(
     `${npm_package_name} @${npm_package_version} is running with:
-      port: ${PORT}`
+      port: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+      HTTP_PORT: ${HTTP_PORT}
+      PLAID_ENV: ${PLAID_ENV}
+      PLAID_CLIENT: ${PLAID_CLIENT}
+      PLAID_PKEY: ${PLAID_PKEY}
+      ROOT_REDIRECT: ${ROOT_REDIRECT}`
   );
 
   app.listen(PORT, () => {
