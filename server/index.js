@@ -1,5 +1,7 @@
 import {} from 'dotenv/config';
 import path from 'path';
+import bunyan from 'bunyan';
+import bunyanMiddleware from 'express-bunyan-logger';
 import express from 'express';
 import bodyparser from 'body-parser';
 import cors from 'cors';
@@ -27,6 +29,7 @@ const plaid = new Plaid.Client(
   Plaid.environments[PLAID_ENV],
 );
 
+const log = bunyan.createLogger({ name: 'slack-customer-kickstart'})
 const app = express();
 
 if (NODE_ENV !== 'production') {
@@ -41,7 +44,8 @@ if (NODE_ENV !== 'production') {
 const publicPath = express.static(path.join(__dirname, '../dist'));
 const indexPath = path.join(__dirname, 'index.html');
 
-app.use(cors());
+app.use( bunyanMiddleware() );
+app.use( cors() );
 app.use( bodyparser.json() );
 app.use( bodyparser.urlencoded( {
   extended: true
@@ -62,6 +66,7 @@ app.post('/api/cc', (req, res, next) => {
   const { name, company, email, phone, address, city, state, zip, token } = req.body;
 
   if ( !token || !token.id) {
+    log.warn('No token in request');
     res.status(500);
     res.send('Missing token');
     return next();
@@ -83,12 +88,12 @@ app.post('/api/cc', (req, res, next) => {
     source: token.id,
   }, (err, customer) => {
     if (err) {
-      console.error(err);
+      log.error(err);
       res.status(500);
       res.send('Unable to create customer.');
       return next();
     }
-
+    
     res.send('Ok');
   })
 
@@ -98,6 +103,7 @@ app.post('/api/ach', (req, res, next) => {
   const { name, company, email, phone, address, city, state, zip, plaid_token, plaid_metadata } = req.body;
 
   if ( !plaid_token) {
+    log.warn('No token in request');
     res.status(500);
     res.send('Missing token');
     return next();
@@ -105,7 +111,7 @@ app.post('/api/ach', (req, res, next) => {
 
   plaid.exchangePublicToken(plaid_token, (plaid_err, plaid_res) => {
     if (plaid_err) {
-      console.error(err);
+      log.error(err);
       res.status(500);
       res.send('Error negotiating with provider');
       return next();
@@ -113,7 +119,7 @@ app.post('/api/ach', (req, res, next) => {
 
     plaid.createStripeToken(plaid_res.access_token, plaid_metadata.account.id, (token_err, token_res) => {
       if (token_err) {
-        console.error(err);
+        log.error(err);
         res.status(500);
         res.send('Error negotiating with provider');
         return next();
@@ -135,7 +141,7 @@ app.post('/api/ach', (req, res, next) => {
         source: token_res.stripe_bank_account_token,
       }, (err, customer) => {
         if (err) {
-          console.error(err);
+          log.error(err);
           res.status(500);
           res.send('Unable to create customer.');
           return next();
@@ -151,13 +157,13 @@ app.post('/api/ach', (req, res, next) => {
 
 if (!module.parent) {
   const { npm_package_name, npm_package_version } = process.env;
-  console.log(
+  log.info(
     `${npm_package_name} @${npm_package_version} is running with:
       port: ${PORT}`
   );
 
   app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`);
+    log.info(`listening on port ${PORT}`);
   });
 }
 
