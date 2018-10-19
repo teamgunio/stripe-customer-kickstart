@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.4.10...v1.5.0) (2018-10-19)
+
+
+### Features
+
+* introduces customer updates instead of creating a new customer each time\nchore: moves stripe/plaid logic into services for better composition/testability ([d98ee51](https://github.com/teamgunio/stripe-customer-kickstart/commit/d98ee51))
+
+
+
 <a name="1.4.10"></a>
 ## [1.4.10](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.4.9...v1.4.10) (2018-10-17)
 
