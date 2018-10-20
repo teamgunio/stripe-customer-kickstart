@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "body-parser": "^1.18.3",
     "bunyan": "^1.8.12",
     "cors": "^2.8.4",
@@ -29,7 +30,6 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@babel/runtime": "^7.1.2",
     "babel-loader": "^8.0.4",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
