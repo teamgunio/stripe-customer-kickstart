@@ -6,48 +6,8 @@
       "image": "dermidgen/stripe-customer-kickstart:%BUILD_NUM%",
       "environment": [
         {
-          "name": "NODE_ENV",
-          "value": "production"
-        },
-        {
-          "name": "BRAND",
-          "value": "%BRAND%"
-        },
-        {
-          "name": "HOST",
-          "value": "%HOST%"
-        },
-        {
           "name": "HOST_PORT",
           "value": "3000"
-        },
-        {
-          "name": "STRIPE_PKEY",
-          "value": "%STRIPE_PKEY%"
-        },
-        {
-          "name": "STRIPE_SKEY",
-          "value": "%STRIPE_SKEY%"
-        },
-        {
-          "name": "PLAID_ENV",
-          "value": "%PLAID_ENV%"
-        },
-        {
-          "name": "PLAID_CLIENT",
-          "value": "%PLAID_CLIENT%"
-        },
-        {
-          "name": "PLAID_PKEY",
-          "value": "%PLAID_PKEY%"
-        },
-        {
-          "name": "PLAID_SKEY",
-          "value": "%PLAID_SKEY%"
-        },
-        {
-          "name": "ROOT_REDIRECT",
-          "value": "%ROOT_REDIRECT%"
         }
       ],
       "essential": true,
