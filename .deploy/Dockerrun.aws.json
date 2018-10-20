@@ -4,12 +4,6 @@
     {
       "name": "stripe-customer-kickstart",
       "image": "dermidgen/stripe-customer-kickstart:%BUILD_NUM%",
-      "environment": [
-        {
-          "name": "HOST_PORT",
-          "value": "3000"
-        }
-      ],
       "essential": true,
       "memory": 128,
       "portMappings": [
