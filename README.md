@@ -65,13 +65,18 @@ Env vars from CircleCi are injected into the AWS EB deployment template using `s
 ## Quick Start
 ```
 yarn install
-npm run start
+yarn start
 ```
 
 The `express` server will fire up and compile the static front end assets with `webpack`, automatically watching for changes. Browse to [`http://localhost:3000`]().
 
 ## Testing
-No tests have been created yet. Tsk-tsk. Use manual UAT for now.
+This project follows BDD testing with Cucumber. You can run a standalone test or in watch mode. Test runners support recording remote API calls into local fixtures for improving test performance. New records can be captured with `VCR_MODE=record` Running tests in `NODE_ENV=CI` will suppress some output and will dodge around recorded fixtures for remote API calls.
+```
+yarn test
+yarn run test:watch
+VCR_MODE=record yarn test
+```
 
 ## Environment
 This project uses `dotenv` to provide environment configuration. Save a copy of `.env.distrib` to `.env` and configure accordingly.
@@ -81,7 +86,7 @@ HOST=localhost
 HOST_PORT=3000
 STRIPE_PKEY=
 STRIPE_SKEY=
-PLAID_ENV=[sandbox|production]
+PLAID_ENV=[sandbox|development|production]
 PLAID_CLIENT=
 PLAID_PKEY=
 PLAID_SKEY=
@@ -95,3 +100,15 @@ BRAND=
 ROOT_REDIRECT=
 ```
 
+### Deployed Environment Variables
+Environment variables are managed via AWS console for your EBS deployment
+
+### CI Environment Variables
+In addition to the application environment variables you'll want to add to CircleCi your AWS & Docker credentials. You'll need:
+```
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+DOCKER_EMAIL
+DOCKER_PASS
+DOCKER_USER
+```
