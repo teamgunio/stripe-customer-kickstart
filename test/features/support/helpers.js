@@ -1,8 +1,8 @@
-import {} from 'dotenv/config';
-import Stripe from 'stripe';
+import {} from 'dotenv/config'
+import Stripe from 'stripe'
 
-const { STRIPE_SKEY } = process.env;
-const stripe = Stripe(STRIPE_SKEY);
+const { STRIPE_SKEY} = process.env
+const stripe = Stripe(STRIPE_SKEY)
 
 export const createCCToken = async () => {
   return 'tok_visa'
@@ -59,7 +59,7 @@ export const cleanStripeCustomer = async (customer) => {
 }
 
 export const findStripeCustomers = async (email) => {
-  const list = await stripe.customers.list({ email });
+  const list = await stripe.customers.list({ email })
   return list.data
 }
 
