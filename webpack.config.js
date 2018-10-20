@@ -1,6 +1,6 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import LiveReloadPlugin from 'webpack-livereload-plugin'
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const Dotenv = require('dotenv-webpack');
 
