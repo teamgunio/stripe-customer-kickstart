@@ -22,30 +22,39 @@
     "react-stripe-elements": "^2.0.1",
     "stripe": "^6.12.1"
   },
-  "scripts": {
-    "test": "echo \"No tests specificed\"",
-    "start": "nodemon --exec babel-node ./server --watch ./server --ignore dist | bunyan -o short",
-    "build": "webpack --config ./webpack.deployment.config.js --progress --colors && babel server -d dist",
-    "serve": "node dist/index.js | bunyan",
-    "release": "standard-version"
-  },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
     "babel-loader": "^8.0.4",
+    "chai": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
+    "cucumber": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.18.4",
     "standard-version": "^4.4.0",
     "style-loader": "^0.23.0",
+    "watch": "^1.0.2",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-livereload-plugin": "^2.1.1"
+  },
+  "scripts": {
+    "test": "cucumber-js --require-module @babel/register test/features",
+    "test:watch": "watch 'npm test' ./ -d",
+    "start": "nodemon --exec babel-node ./server --watch ./server --ignore dist | bunyan -o short",
+    "build": "npm run build:webpack && npm run build:babel",
+    "build:webpack": "webpack --config ./webpack.deployment.config.js --progress --colors",
+    "build:babel": "babel server -d dist",
+    "serve": "node dist/index.js | bunyan",
+    "release": "standard-version"
   }
 }
