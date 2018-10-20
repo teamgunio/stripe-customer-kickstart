@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.0...v1.5.1) (2018-10-20)
+
+
+### Bug Fixes
+
+* fixes production webpack config to not require transpiling ([b78bf6a](https://github.com/teamgunio/stripe-customer-kickstart/commit/b78bf6a))
+* improves logging in Stripe service\nchore: introduces cucumber tests ([770d088](https://github.com/teamgunio/stripe-customer-kickstart/commit/770d088))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.4.10...v1.5.0) (2018-10-19)
 
