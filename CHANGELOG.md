@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.6"></a>
+## [1.5.6](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.5...v1.5.6) (2018-10-24)
+
+
+### Bug Fixes
+
+* give containers more memory for webpack builds ([80d4b56](https://github.com/teamgunio/stripe-customer-kickstart/commit/80d4b56))
+
+
+
 <a name="1.5.5"></a>
 ## [1.5.5](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.4...v1.5.5) (2018-10-24)
 
