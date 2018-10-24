@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.5"></a>
+## [1.5.5](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.4...v1.5.5) (2018-10-24)
+
+
+### Bug Fixes
+
+* brings back missing [@babel](https://github.com/babel)/node dependency ([89f4b0f](https://github.com/teamgunio/stripe-customer-kickstart/commit/89f4b0f))
+* defers to building at serve time; this allows compiling env vars into runtime; cleanup unused plugins from webpack; don't build in ci anymore; ignore ebs artifacts ([1622981](https://github.com/teamgunio/stripe-customer-kickstart/commit/1622981))
+
+
+
 <a name="1.5.4"></a>
 ## [1.5.4](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.3...v1.5.4) (2018-10-20)
 

@@ -1,6 +1,6 @@
 {
   "name": "stripe-customer-kickstart",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "A Widget that collects & verifies customer payment info and creates new customers in Stripe",
   "main": "index.js",
   "repository": "https://github.com/teamgunio/stripe-customer-kickstart",
