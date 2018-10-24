@@ -14,7 +14,6 @@ jobs:
       - run:
           name: Build
           command: |
-            yarn run build
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
             docker build --cache-from=app -t ${DOCKER_USER}/stripe-customer-kickstart:${CIRCLE_SHA1} .
             docker tag ${DOCKER_USER}/stripe-customer-kickstart:${CIRCLE_SHA1} ${DOCKER_USER}/stripe-customer-kickstart:latest

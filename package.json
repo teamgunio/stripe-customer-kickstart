@@ -56,7 +56,7 @@
     "build": "npm run build:webpack && npm run build:babel",
     "build:webpack": "webpack --config ./webpack.deployment.config.js --progress --colors",
     "build:babel": "babel server -d dist",
-    "serve": "node dist/index.js | bunyan",
+    "serve": "npm run build && node dist/index.js | bunyan",
     "release": "standard-version"
   }
 }
