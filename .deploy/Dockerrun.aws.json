@@ -5,7 +5,7 @@
       "name": "stripe-customer-kickstart",
       "image": "dermidgen/stripe-customer-kickstart:%BUILD_NUM%",
       "essential": true,
-      "memory": 128,
+      "memory": 256,
       "portMappings": [
         {
           "hostPort": 80,
