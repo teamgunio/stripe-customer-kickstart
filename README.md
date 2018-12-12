@@ -68,7 +68,7 @@ yarn install
 yarn start
 ```
 
-The `express` server will fire up and compile the static front end assets with `webpack`, automatically watching for changes. Browse to [`http://localhost:3000`]().
+The `express` server will fire up and compile the static front end assets with `webpack`, automatically watching for changes. Browse to [`http://localhost:3000`](http://localhost:3000).
 
 ## Testing
 This project follows BDD testing with Cucumber. You can run a standalone test or in watch mode. Test runners support recording remote API calls into local fixtures for improving test performance. New records can be captured with `VCR_MODE=record` Running tests in `NODE_ENV=CI` will suppress some output and will dodge around recorded fixtures for remote API calls.
