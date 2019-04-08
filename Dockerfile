@@ -11,8 +11,8 @@ COPY client client
 COPY server server
 
 COPY package.json package.json
-COPY yarn.lock yarn.lock
+COPY package-lock.json package-lock.json
 
-RUN yarn install
+RUN npm install
 
-CMD ["yarn", "run", "serve"]
+CMD ["npm", "run", "serve"]
