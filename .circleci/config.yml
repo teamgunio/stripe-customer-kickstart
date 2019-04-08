@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Test
           command: |
-            yarn install
+            yarn install --verbose --frozen-lockfile
             yarn test
       - run:
           name: Build
