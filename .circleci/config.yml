@@ -9,9 +9,8 @@ jobs:
       - run:
           name: Test
           command: |
-            yarn cache clean
-            yarn install --verbose
-            yarn test
+            npm install
+            npm test
       - run:
           name: Build
           command: |
