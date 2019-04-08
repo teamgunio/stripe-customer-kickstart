@@ -23,7 +23,7 @@ class PaymentInfo extends React.Component {
       state: '',
       zip: '',
       token: '',
-      method: 'cc',
+      method: 'ach',
       errors: [],
       created: false,
       submitted: false,
@@ -40,6 +40,12 @@ class PaymentInfo extends React.Component {
       document.querySelector('#plaid-js').addEventListener('load', () => {
         this.setState({plaid: this.initPlaid()});
       });
+    }
+
+    if (window.location.search === '?method=cc') {
+      this.setState({
+        method: 'cc'
+      })
     }
   }
 
@@ -61,10 +67,11 @@ class PaymentInfo extends React.Component {
           // The user encountered a Plaid API error prior to exiting.
         }
 
-        window.document.getElementById('method').value = 'cc';
-        this.setState({
-          method: 'cc',
-        });
+        // We used to revert back to CC; but we're dropping this behavior
+        // window.document.getElementById('method').value = 'cc';
+        // this.setState({
+        //   method: 'cc',
+        // });
       },
     });
   }
@@ -194,6 +201,10 @@ class PaymentInfo extends React.Component {
     }
   }
 
+  openACH() {
+    this.state.plaid.open()
+  }
+
   render() {
     const { name, company, email, phone, address, city, state, zip, token, method, created, submitted, errors, plaid_metadata } = this.state;
 
@@ -249,22 +260,6 @@ class PaymentInfo extends React.Component {
           </fieldset>
           <fieldset>
             <legend>Payment Info</legend>
-            <div className="row">
-              <div className="field">
-                <label htmlFor="method">Payment Method</label>
-                <RadioGroup id="method" name="method" selectedValue={method} onChange={(value) => {
-                  this.handleChange({
-                    target: {
-                      id: 'method',
-                      value
-                    }
-                  })
-                }}>
-                  <Radio value="cc"/> Credit Card
-                  <Radio value="ach"/> ACH
-                </RadioGroup>
-              </div>
-            </div>
             { method === 'cc' ?
               <div className="row payment-info">
                 <div className="field">
@@ -272,6 +267,15 @@ class PaymentInfo extends React.Component {
                   <CardElement />
                 </div>
               </div> : null
+            }
+            { (method === 'ach' && !plaid_metadata) ?
+              <div className="row">
+                <button
+                  onClick={this.openACH.bind(this)}
+                  className="secondary"
+                >Add ACH Info</button>
+              </div>
+              : null
             }
             { (method === 'ach' && plaid_metadata) ?
               <div className="row">

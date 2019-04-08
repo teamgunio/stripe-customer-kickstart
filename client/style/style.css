@@ -206,6 +206,13 @@
   cursor: default;
 }
 
+.StripeCustomerKickstart button.secondary {
+  background-color: #2377d520;
+  border: 1px solid #ccc;
+  display: inline-block;
+  color: #999;
+}
+
 .StripeCustomerKickstart button.success {
   background-color: #00B016;
 }
