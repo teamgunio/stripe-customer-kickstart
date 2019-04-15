@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.6...v1.6.0) (2019-04-15)
+
+
+### Bug Fixes
+
+* General linting cleanup ([63e3d52](https://github.com/teamgunio/stripe-customer-kickstart/commit/63e3d52))
+* General linting cleanup, last pass ([5c82b2a](https://github.com/teamgunio/stripe-customer-kickstart/commit/5c82b2a))
+* Repair link to http://localhost:3000 reference ([f5e072a](https://github.com/teamgunio/stripe-customer-kickstart/commit/f5e072a))
+* Repair link to https://www.gun.io/payment ([fa357a5](https://github.com/teamgunio/stripe-customer-kickstart/commit/fa357a5))
+* switching back to npm since yarn seems to consistently fail in circle ([1e3f37d](https://github.com/teamgunio/stripe-customer-kickstart/commit/1e3f37d))
+* Trying to work around CircleCi and issues with yarn install ([0faa6e6](https://github.com/teamgunio/stripe-customer-kickstart/commit/0faa6e6))
+* Trying to work around CircleCi and issues with yarn install ([921ddcf](https://github.com/teamgunio/stripe-customer-kickstart/commit/921ddcf))
+* **npm:** going back to NPM entirely since yarn is so flakey ([5ba56ef](https://github.com/teamgunio/stripe-customer-kickstart/commit/5ba56ef))
+* **submit:** fixes an issue with pre-mature form submission; buttons that don't explicity have a "button" type try to submit the form early ([b28e828](https://github.com/teamgunio/stripe-customer-kickstart/commit/b28e828))
+
+
+### Features
+
+* **paymentMethod:** moves payment method selection to URL parameters instead of user select via form ([3daa369](https://github.com/teamgunio/stripe-customer-kickstart/commit/3daa369))
+
+
+
 <a name="1.5.6"></a>
 ## [1.5.6](https://github.com/teamgunio/stripe-customer-kickstart/compare/v1.5.5...v1.5.6) (2018-10-24)
 
