@@ -272,6 +272,7 @@ class PaymentInfo extends React.Component {
               <div className="row">
                 <button
                   onClick={this.openACH.bind(this)}
+                  type="button"
                   className="secondary"
                 >Add ACH Info</button>
               </div>
