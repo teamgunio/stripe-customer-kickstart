@@ -1,7 +1,10 @@
+# This repo is archived
+
+This repo is made available for demonstration purposes. It is not recommended to use this repository for production use. 
+
 # Stripe Customer Kickstart
 
 A Widget that collects &amp; verifies customer payment info and creates new customers in Stripe.  
-Example: [https://www.gun.io/payment](https://www.gun.io/payment)
 
 ## Features
 
